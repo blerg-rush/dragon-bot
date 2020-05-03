@@ -5,6 +5,7 @@ require 'discordrb'
 require 'active_record'
 require './lib/models/weapon'
 require './lib/models/accessory'
+require 'erb'
 
 def db_configuration
   db_configuration_file = File.join(File.expand_path(__dir__),
