@@ -14,4 +14,5 @@ test: &test
 
 production:
   <<: *default
-  database: dragon_bot
+  database: dragon_bot_production
+  username: dragon_bot

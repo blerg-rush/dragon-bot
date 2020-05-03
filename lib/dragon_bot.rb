@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'dotenv/load'
+require 'dotenv/load' unless ENV['RUBY_ENV'] == 'production'
 require 'discordrb'
 require 'active_record'
 require './lib/models/weapon'
