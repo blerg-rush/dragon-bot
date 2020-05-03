@@ -11,7 +11,9 @@ module Format
     info << "Required level: #{equip.level}"
     info << "Classes: #{equip.classes}"
     info << equip.stats
-    info << "Element: #{equip.element}" unless equip.element.nil?
+    if equip.has_attribute?(:element)
+      info << "Element: #{equip.element}" unless equip.element.nil?
+    end
     unless equip.bonus.empty?
       info << '*Bonuses:*'
       equip.bonus.each { |bonus| info << "*#{bonus}*" }
