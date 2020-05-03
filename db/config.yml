@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+
+development:
+  <<: *default
+  database: dragon_bot_development
+
+test: &test
+  <<: *default
+  database: dragon_bot_test
+
+production:
+  <<: *default
+  database: dragon_bot

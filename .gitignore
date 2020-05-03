@@ -1,0 +1,5 @@
+# data sources and scripts
+/data/*
+parse.rb
+
+.env 
