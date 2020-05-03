@@ -12,7 +12,8 @@ def db_configuration
                                     '..',
                                     'db',
                                     'config.yml')
-  YAML.safe_load(File.read(db_configuration_file), aliases: true)
+  YAML.safe_load(ERB.new(File.read(db_configuration_file)).result,
+                 aliases: true)
 end
 
 ActiveRecord::Base.establish_connection(db_configuration[ENV['RUBY_ENV']])
