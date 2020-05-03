@@ -12,10 +12,4 @@ class Weapon < ActiveRecord::Base
       acc + "#{stat.upcase}: #{value}\t"
     end.strip
   end
-
-  def bonuses
-    return ['none'] if bonus.empty?
-
-    bonus
-  end
 end

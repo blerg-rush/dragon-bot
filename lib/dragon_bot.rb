@@ -42,8 +42,10 @@ bot.command :weapon do |event, *args|
   event << "**#{input.capitalize}**"
   event << "Required level: #{weapon.level}"
   event << weapon.stats
-  event << 'Bonuses:'
-  weapon.bonuses.each { |bonus| event << bonus }
+  unless weapon.bonus.empty?
+    event << 'Bonuses:'
+    weapon.bonus.each { |bonus| event << bonus }
+  end
   nil
 end
 
