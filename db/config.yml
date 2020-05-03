@@ -14,5 +14,6 @@ test: &test
 
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %> 
   database: dragon_bot_production
   username: dragon_bot
