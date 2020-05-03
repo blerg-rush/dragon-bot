@@ -5,6 +5,7 @@ require 'discordrb'
 require 'active_record'
 require './lib/models/weapon'
 require './lib/models/accessory'
+require './lib/helpers/format'
 require 'erb'
 
 def db_configuration
@@ -31,42 +32,30 @@ bot.command :help do |event|
 end
 
 bot.command :weapon do |event, *args|
-  if args.nil?
-    return "Usage: \"!weapon <name>\"\nFor example: \"!weapon Knife +2\""
+  if args.empty?
+    return 'Usage: "!weapon <name>"'\
+           "\nExample: !weapon knife +2"
   end
 
   input = args.join(' ').downcase
   weapon = Weapon.find_by_name(input)
-  return "#{input.capitalize} not found" if weapon.nil?
+  return "#{Format.title(input)} not found" if weapon.nil?
 
-  event << "**#{input.capitalize}**"
-  event << "Required level: #{weapon.level}"
-  event << "Classes: #{weapon.classes}"
-  event << weapon.stats
-  unless weapon.bonus.empty?
-    event << 'Bonuses:'
-    weapon.bonus.each { |bonus| event << bonus }
-  end
+  Format.equip_info(weapon).each { |line| event << line }
   nil
 end
 
 bot.command :accessory do |event, *args|
-  if args.nil?
-    return "Usage: \"!accessory <name>\"\nFor example: \"!weapon Knife +2\""
+  if args.empty?
+    return 'Usage: "!accessory <name>"'\
+           "\nExample: !accessory dragon king crystal"
   end
 
   input = args.join(' ').downcase
   accessory = Accessory.find_by_name(input)
   return "#{input.capitalize} not found" if accessory.nil?
 
-  event << "**#{input.capitalize}**"
-  event << "Required level: #{accessory.level}"
-  event << "Classes: #{accessory.classes}"
-  event << accessory.stats
-  unless accessory.bonus.empty?
-    event << 'Bonuses:'
-    accessory.bonus.each { |bonus| event << bonus }
-  end
+  Format.equip_info(accessory).each { |line| event << line }
   nil
 end
 
