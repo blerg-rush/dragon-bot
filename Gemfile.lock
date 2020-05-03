@@ -135,5 +135,8 @@ DEPENDENCIES
   rubocop (~> 0.82.0)
   standalone_migrations (~> 5.2)
 
+RUBY VERSION
+   ruby 2.7.1p83
+
 BUNDLED WITH
    2.1.4
