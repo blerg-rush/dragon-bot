@@ -13,9 +13,15 @@ class Accessory < ActiveRecord::Base
     end.strip
   end
 
-  def bonuses
-    return 'none' if bonus.empty?
+  def classes
+    list = slice(:bandit, :empress, :oracle,
+                 :shinobi, :warrior, :witch)
+    return 'All' if list.values.all?
 
-    bonus
+    list.reduce('') do |acc, (class_name, bool)|
+      next acc unless bool
+
+      acc + "#{class_name.capitalize} "
+    end.strip
   end
 end

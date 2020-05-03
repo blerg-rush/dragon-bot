@@ -12,4 +12,16 @@ class Weapon < ActiveRecord::Base
       acc + "#{stat.upcase}: #{value}\t"
     end.strip
   end
+
+  def classes
+    list = slice(:bandit, :empress, :oracle,
+                 :shinobi, :warrior, :witch)
+    return 'All' if list.values.all?
+
+    list.reduce('') do |acc, (class_name, bool)|
+      next acc unless bool
+
+      acc + "#{class_name.capitalize} "
+    end.strip
+  end
 end
