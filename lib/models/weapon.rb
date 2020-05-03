@@ -14,7 +14,7 @@ class Weapon < ActiveRecord::Base
   end
 
   def bonuses
-    return 'none' if bonus.empty?
+    return ['none'] if bonus.empty?
 
     bonus
   end
