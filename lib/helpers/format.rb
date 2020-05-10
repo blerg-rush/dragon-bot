@@ -15,8 +15,8 @@ module Format
       info << "Element: #{equip.element}" unless equip.element.nil?
     end
     unless equip.bonus.empty?
-      info << '*Bonuses:*'
-      equip.bonus.each { |bonus| info << "*#{bonus}*" }
+      info << '_Bonuses:_'
+      equip.bonus.each { |bonus| info << "_#{bonus}_" }
     end
     info
   end

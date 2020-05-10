@@ -3,6 +3,7 @@
 require 'dotenv/load' unless ENV['RUBY_ENV'] == 'production'
 require 'active_record'
 require './lib/bots/discord'
+require './lib/bots/slack'
 require 'erb'
 
 def db_configuration
@@ -16,4 +17,7 @@ end
 
 ActiveRecord::Base.establish_connection(db_configuration[ENV['RUBY_ENV']])
 
-DiscordBot.new token: ENV['DISCORD_TOKEN'], prefix: '!'
+discord_bot = DiscordBot.new
+discord_bot.run
+
+# SlackBot.run

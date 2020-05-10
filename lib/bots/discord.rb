@@ -6,16 +6,17 @@ require './lib/models/weapon'
 require './lib/models/accessory'
 require './lib/helpers/format'
 
-class DiscordBot
-  def initialize(token:, prefix:)
-    @bot = Discordrb::Commands::CommandBot.new token: token,
-                                               prefix: prefix
+class DiscordBot < Discordrb::Commands::CommandBot
+  def initialize
+    super(token: ENV['DISCORD_TOKEN'], prefix: '!')
+  end
 
-    puts "This bot's invite URL is #{@bot.invite_url}."
+  def run
+    puts "This bot's invite URL is #{invite_url}."
     puts 'Click on it to invite it to your server.'
 
     initialize_commands
-    @bot.run
+    super.run
   end
 
   def initialize_commands
@@ -25,7 +26,7 @@ class DiscordBot
   end
 
   def help_command
-    @bot.command :help do |event|
+    command :help do |event|
       event << 'Supported commands:'
       event << '!weapon <name>'
       event << '!accessory <name>'
@@ -33,7 +34,7 @@ class DiscordBot
   end
 
   def weapon_command
-    @bot.command :weapon do |event, *args|
+    command :weapon do |event, *args|
       if args.empty?
         return 'Usage: "!weapon <name>"'\
                "\nExample: !weapon knife +2"
@@ -49,7 +50,7 @@ class DiscordBot
   end
 
   def accessory_command
-    @bot.command :accessory do |event, *args|
+    command :accessory do |event, *args|
       if args.empty?
         return 'Usage: "!accessory <name>"'\
                "\nExample: !accessory dragon king crystal"
