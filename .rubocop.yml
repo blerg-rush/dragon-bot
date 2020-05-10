@@ -3,6 +3,8 @@ AllCops:
     - 'db/**/*'
     - 'parse.rb'
   NewCops: enable
+Metrics/AbcSize: {Max: 25 }
+Metrics/MethodLength: { Max: 15 }
 Style/Documentation: { Enabled: false }
 Style/SymbolArray: { Enabled: false }
 Style/WordArray: { Enabled: false }
