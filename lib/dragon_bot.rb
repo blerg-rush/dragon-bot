@@ -22,7 +22,9 @@ end
 
 ActiveRecord::Base.establish_connection(db_configuration[ENV['RUBY_ENV']])
 
-discord_bot = DiscordBot.new
-discord_bot.run
+# Uncomment these to run in Discord mode
+# discord_bot = DiscordBot.new
+# discord_bot.run
 
+# Uncomment the below to run in Slack mode
 # SlackBot.run
