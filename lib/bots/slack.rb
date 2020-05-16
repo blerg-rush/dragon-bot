@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 
-require 'dotenv/load' unless ENV['RUBY_ENV'] == 'production'
-require 'slack-ruby-bot'
-require './lib/models/weapon'
-require './lib/models/accessory'
-require './lib/helpers/format'
-
 SlackRubyBot::Client.logger.level = Logger::WARN
 
 class SlackBot < SlackRubyBot::Bot
@@ -24,7 +18,7 @@ class SlackBot < SlackRubyBot::Bot
 
   operator '!weapon ' do |client, data, match|
     input = match[:expression]
-    weapon = Weapon.find_by_name(input)
+    weapon = Weapon.find_by_name(input.downcase)
 
     if weapon.nil?
       client.say(channel: data.channel,
@@ -39,7 +33,7 @@ class SlackBot < SlackRubyBot::Bot
 
   operator '!accessory ' do |client, data, match|
     input = match[:expression]
-    accessory = Accessory.find_by_name(input)
+    accessory = Accessory.find_by_name(input.downcase)
 
     if accessory.nil?
       client.say(channel: data.channel,

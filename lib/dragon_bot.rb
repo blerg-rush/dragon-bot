@@ -2,9 +2,14 @@
 
 require 'dotenv/load' unless ENV['RUBY_ENV'] == 'production'
 require 'active_record'
+require 'erb'
+require 'discordrb'
+require 'slack-ruby-bot'
 require './lib/bots/discord'
 require './lib/bots/slack'
-require 'erb'
+require './lib/helpers/format'
+require './lib/models/weapon'
+require './lib/models/accessory'
 
 def db_configuration
   db_configuration_file = File.join(File.expand_path(__dir__),

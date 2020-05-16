@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 
-require 'dotenv/load' unless ENV['RUBY_ENV'] == 'production'
-require 'discordrb'
-require './lib/models/weapon'
-require './lib/models/accessory'
-require './lib/helpers/format'
-
 class DiscordBot < Discordrb::Commands::CommandBot
   def initialize
     super(token: ENV['DISCORD_TOKEN'], prefix: '!')
